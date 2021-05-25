@@ -2,31 +2,25 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
-using Project.Entities;
+using Project.Services;
 
 
 namespace Project
 {
+    delegate double BinaryNumericOperation(double n1, double n2);
     class Program
     {
         public static int globalValue = 3;
 
         static void Main(string[] args)
         {
-            int[] vect = new int[] { 3, 4, 5 };
-            ChangeOddValues(vect);
-            Console.WriteLine(string.Join(" ",vect));
-        }
+            double a = 10;
+            double b = 12;
 
-        public static void ChangeOddValues(int[] numbers)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] % 2 != 0)
-                {
-                    numbers[i] += globalValue;
-                }
-            }
+            BinaryNumericOperation op = CalculationService.Sum;
+
+            double result = op(a,b);
+            Console.WriteLine(result);
         }
     }
 }
