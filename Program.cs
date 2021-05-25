@@ -7,7 +7,7 @@ using Project.Services;
 
 namespace Project
 {
-    delegate double BinaryNumericOperation(double n1, double n2);
+    delegate void BinaryNumericOperation(double n1, double n2);
     class Program
     {
         public static int globalValue = 3;
@@ -18,9 +18,9 @@ namespace Project
             double b = 12;
 
             BinaryNumericOperation op = CalculationService.Sum;
+            op += CalculationService.Max;
 
-            double result = op(a,b);
-            Console.WriteLine(result);
+            op(a,b);
         }
     }
 }
