@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using Project.Entities;
+using System.Linq;
 
 
 namespace Project
@@ -19,16 +20,19 @@ namespace Project
             list.Add(new Product("Tablet", 350.00));
             list.Add(new Product("HD Case", 80.90));
 
-            list.ForEach(p => { p.Price += p.Price * 0.1; });
-            foreach(Product p in list)
+            Func<Product, string> func = p => p.Name.ToUpper();
+
+            List<string> result = list.Select(func).ToList();
+
+            foreach(string s in result)
             {
-                Console.WriteLine(p);
+                Console.WriteLine(s);
             }
         }
 
-        static void UpdatePrice(Product p)
+        static string NameUpper(Product p)
         {
-            p.Price += p.Price * 0.1;
+            return p.Name.ToUpper();
         }
     }
 }
